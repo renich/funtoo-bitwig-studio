@@ -21,17 +21,20 @@ DEPEND=""
 RDEPEND="${DEPEND}
 		app-arch/bzip2
 		dev-libs/expat
+		dev-libs/libbsd
 		gnome-extra/zenity
+		libav? ( media-video/libav )
 		media-libs/alsa-lib
 		media-libs/fontconfig
 		media-libs/freetype
 		media-libs/libpng:0/16
 		media-libs/mesa
 		media-sound/jack-audio-connection-kit
-		libav? ( media-video/libav )
 		sys-devel/gcc
 		sys-libs/glibc
 		sys-libs/zlib
+		virtual/opengl
+		virtual/udev
 		x11-libs/cairo[xcb]
 		x11-libs/libX11
 		x11-libs/libXau
@@ -44,9 +47,7 @@ RDEPEND="${DEPEND}
 		x11-libs/libxcb
 		x11-libs/libxkbfile
 		x11-libs/pixman
-		x11-libs/xcb-util-wm
-		virtual/opengl
-		virtual/udev"
+		x11-libs/xcb-util-wm"
 
 S=${WORKDIR}
 
@@ -56,11 +57,6 @@ src_prepare() {
 		-e 's/^\(Icon=.*\).png$/\1/g' \
 		-e 's/^\(Categories=\)Multimedia$/\1Audio\;AudioVideo\;/g' \
 		usr/share/applications/bitwig-studio.desktop
-
-	# Fix icon filename
-	mv \
-		'usr/share/icons/gnome/48x48/apps/Bitwig Studio.png' \
-		'usr/share/icons/gnome/48x48/apps/bitwig-studio.png'
 }
 
 src_install() {
@@ -78,9 +74,10 @@ src_install() {
 	insinto /usr/share/mime/packages
 	doins usr/share/mime/packages/bitwig-studio.xml
 
-	doicon -c mimetypes -s scalable usr/share/icons/gnome/scalable/mimetypes/application-bitwig-*.svg
-	doicon -c apps -s scalable usr/share/icons/gnome/scalable/apps/bitwig-studio.svg
-	doicon -c apps -s 48 usr/share/icons/gnome/48x48/apps/bitwig-studio.png
+	doicon -c mimetypes -s scalable usr/share/icons/hicolor/scalable/mimetypes/application-bitwig-*.svg
+	doicon -c apps -s scalable usr/share/icons/hicolor/scalable/apps/bitwig-studio.svg
+	doicon -c apps -s 48 usr/share/icons/hicolor/48x48/apps/bitwig-studio.png
+	doicon -c apps -s 48 usr/share/icons/hicolor/48x48/apps/bitwig-modular.png
 
 	domenu usr/share/applications/bitwig-studio.desktop
 }
