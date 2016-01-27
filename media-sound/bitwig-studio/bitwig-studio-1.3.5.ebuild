@@ -92,8 +92,8 @@ pkg_postinst() {
 	fdo-mime_desktop_database_update
 
 	if ! use libav; then
-		einfo "libav USE flag not set. Bitwig Studio require the avprobe and avconv tools"
-		einfo "for importing audio files."
+		einfo "libav USE flag not set. Bitwig Studio requires avprobe and avconv"
+		einfo "when importing audio files."
 	fi
 }
 
