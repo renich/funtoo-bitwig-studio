@@ -55,7 +55,7 @@ src_prepare() {
 	# Fix desktop file validation errors
 	sed -i \
 		-e 's/^\(Icon=.*\).png$/\1/g' \
-		-e 's/^\(Categories=\)Multimedia$/\1Audio\;AudioVideo\;/g' \
+		-e 's/^\(Categories=\)Multimedia.*$/\1Audio\;AudioVideo\;/g' \
 		usr/share/applications/bitwig-studio.desktop
 }
 
